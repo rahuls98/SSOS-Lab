@@ -1,0 +1,18 @@
+Write YACC program to evaluate arithmetic expression involving operators:
++,-,* and /.
+
+O/P
+
+yacc -d EvalExpr.y
+lex EvalExpr.l
+gcc lex.yy.c y.tab.c -ll
+
+./a.out
+Enter an expression:
+3+4*8/2-1
+18
+
+./a.out
+Enter an expression:
+8/0
+Divide by zero error

@@ -1,0 +1,36 @@
+Write a LEX program to recognize valid arithmetic expression. Identifiers in the
+expression can only be integers, and operators can be + or *. 
+Count the number of identifiers & operators present and print them separately.
+
+
+O/P
+
+lex ValidExpr.l
+gcc lex.yy.c -ll
+
+./a.out
+Enter the expression: 3+4;4+5
+
+Identifier: 3
+Operator: +
+Identifier: 4
+Identifier: 4
+Operator: +
+Identifier: 5
+[Ctrl-d]
+Number of identifiers = 4
+Number of operators = 2
+Expression is invalid
+
+./a.out
+Enter the expression: (3+4)*5
+
+Identifier: 3
+Operator: +
+Identifier: 4
+Operator: *
+Identifier: 5
+[Ctrl-d]
+Number of identifiers = 3
+Number of operators = 2
+Expression is valid
