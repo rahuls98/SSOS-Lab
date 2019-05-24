@@ -6,7 +6,6 @@ Tools/Languages:
 - C/C++
 - Java
 
-Instructions
 ## Lex:
 - lex pgm.l
 - gcc lex.yy.c -ll
