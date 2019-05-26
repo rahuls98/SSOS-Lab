@@ -1,0 +1,27 @@
+Develop,iImplement and execute a program using YACC tool to recognize all strings
+ending with b preceded by n a’s using the grammar a n b (note: input n value)
+
+O/P
+yacc -d nab.y
+lex nab.l
+gcc lex.yy.c y.tab.c -ll
+
+./a.out
+Enter the string:
+aaab
+Enter the n value:
+3
+Valid
+
+./a.out
+Enter the string:
+acb
+Invalid! Not a part of language
+
+./a.out
+Enter the string:
+aaaab
+Enter the n value:
+2
+
+Invalid
