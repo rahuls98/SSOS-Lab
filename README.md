@@ -9,7 +9,7 @@ Tools/Languages:
 ## Lex:
 - lex pgm.l
 - gcc lex.yy.c -ll
-- .a/.out
+- ./a.out
 
 ## Yacc
 - yacc -d pgm.y
