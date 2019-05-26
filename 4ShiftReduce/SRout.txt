@@ -1,0 +1,25 @@
+Design, develop and implement YACC/C program to demonstrate Shift Reduce
+Parsing technique for the grammar rules: E → E+T | T, T → T*F | F, F → (E) | id
+and parse the sentence: id + id * id.
+
+GRAMMAR is 
+E->E+T|T 
+T->T*F|F 
+F->id|(E) 
+Enter the sentence
+id+id*id
+Stack   Input   Action
+---     id+id*id$       ---
+id        +id*id$       Shift id
+F         +id*id$       Reduce F->id
+T         +id*id$       Reduce T->F
+E         +id*id$       Reduce E->T
+E+         id*id$       Shift +
+E+id         *id$       Shift id
+E+F          *id$       Reduce F->id
+E+T          *id$       Reduce T->F
+E+T*          id$       Shift *
+E+T*id          $       Shift id
+E+T*F           $       Reduce F->id
+E+T             $       Reduce T->T*F
+E               $       Reduce E->E+T
