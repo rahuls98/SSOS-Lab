@@ -1,0 +1,17 @@
+Design, develop and implement YACC/C program to construct Predictive / LL(1)
+Parsing Table for the grammar rules: A → aBa , B → bB | ε . Use this table to parse
+the sentence: abba$
+
+First of A a 
+First of B b3 
+Follow of A $ 
+Folow of B a 
+M[A,a]= A=aBa
+M[B,a]= B=3
+M[B,b]= B=bB
+Stack: A$       input abba$     prod: A=aBa
+Stack: Ba$      input bba$      prod: B=bB
+Stack: Ba$      input ba$       prod: B=bB
+Stack: Ba$      input a$        prod: B=3
+Stack: $        input: $        prod: 
+String accepted.
