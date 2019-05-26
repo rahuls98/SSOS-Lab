@@ -1,0 +1,36 @@
+Design, develop and implement a C/C++/Java program to implement Banker’s
+algorithm. Assume suitable input required to demonstrate the results.
+
+O/P
+
+Bankers Algorithm!
+Enter the number of processes: 5
+
+Enter the number of resources: 3
+
+Enter the allocated resources for each process: 
+0 1 0
+2 0 0
+3 0 2
+2 1 1
+0 0 2
+
+Enter the maximum resources for each process: 
+7 5 3
+3 2 2
+9 0 2
+2 2 2
+4 3 3
+
+Enter the available resources: 3 3 2
+
+The need matrix is: 
+7 4 3 
+1 2 2 
+6 0 0 
+0 1 1 
+4 3 1 
+
+
+The system is in safe state and deadlock will not occur!!
+The safe state sequence is: P2 P4 P5 P1 P3
