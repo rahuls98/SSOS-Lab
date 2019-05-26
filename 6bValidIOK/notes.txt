@@ -1,0 +1,44 @@
+Write YACC program to recognize valid identifier, operators and keywords in the
+given text (C program) file.
+
+O/P
+yacc -d ValidIOK.y
+lex ValidIOK.l
+gcc lex.yy.c y.tab.c -ll
+
+./a.out
+
+Keyword: void
+Keyword: main
+
+Keyword: int
+Identifier: a
+Operator: =
+Identifier: 5
+
+Keyword: int
+Identifier: b
+Operator: =
+Identifier: 2
+
+Keyword: int
+Identifier: c
+
+Keyword: if
+Identifier: a
+Operator: <
+Identifier: b
+
+Identifier: c
+Operator: =
+Identifier: a
+
+Keyword: else
+
+Identifier: c
+Operator: =
+Identifier: b
+
+Identifiers:11
+Operators:5
+Keywords:7
