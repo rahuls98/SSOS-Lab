@@ -1,12 +1,13 @@
 #include<stdio.h>
-int n,nf;
-int in[100];
-int p[50];
+int n,nf; //seq length and no. of frames
+int in[100]; //seq string
+int p[50]; //page
 int hit=0;
 int i,j,k;
 int avail;
 int PgFaultCnt=0;
- 
+
+//Get the seq length, seq string and no. of frames 
 void getData()
 {
     printf("\nEnter length of page reference sequence:");
@@ -17,14 +18,16 @@ void getData()
     printf("\nEnter no of frames:");
     scanf("%d",&nf);
 }
- 
+
+//set frame contents to 9999
 void initialize()
 {
     PgFaultCnt=0;
     for(i=0; i<nf; i++)
         p[i]=9999;
 }
- 
+
+//check if the current item is already present in any of the frames 
 int isHit(int data)
 {
     hit=0;
@@ -38,21 +41,8 @@ int isHit(int data)
     }
     return hit;
 }
- 
-int getHitIndex(int data)
-{
-    int hitind;
-    for(k=0; k<nf; k++)
-    {
-        if(p[k]==data)
-        {
-            hitind=k;
-            break;
-        }
-    }
-    return hitind;
-}
- 
+
+//display each contents of pages
 void dispPages()
 {
     for (k=0; k<nf; k++)
@@ -62,50 +52,55 @@ void dispPages()
     }
  
 }
- 
+
+//display the page fault count
 void dispPgFaultCnt()
 {
     printf("\nTotal no of page faults:%d",PgFaultCnt);
 }
 
+//fifo page replacement
 void fifo()
 {
     initialize();
-    j=0;
+    int pos=0;
     
+    //run through the sequence
     for(i=0; i<n; i++)
     {
         printf("\nFor %d :",in[i]);
-        avail=0;
-        for(k=0; k<nf; k++)
-            if(p[k]==in[i])
-                avail=1;
-        if(avail==0)
+        //Replace if no hit
+        if(isHit(in[i])==0)
         {
-            p[j]=in[i];
-            j=(j+1)%nf;
+            p[pos]=in[i];
+            pos=(pos+1)%nf;
             PgFaultCnt++;
             dispPages();
         }
+        //Else no page fault
         else
             printf("No page fault!");
     }
     dispPgFaultCnt();
 }
 
+//lru page replacement
 void lru()
 {
     initialize();
  
     int least[50];
+    //run through the sequence
     for(i=0; i<n; i++)
     {
         printf("\nFor %d :",in[i]);
-
+        //replace if no hit
         if(isHit(in[i])==0)
         {
+            //go through frame elements
             for(j=0; j<nf; j++)
             {
+                //check which element(pg) is least recently used
                 int pg=p[j];
                 int found=0;
                 for(k=i-1; k>=0; k--)
@@ -122,6 +117,7 @@ void lru()
                 if(!found)
                     least[j]=-9999;
             }
+            //check which frame element(j) has the least value
             int min=9999;
             int repindex;
             for(j=0; j<nf; j++)
