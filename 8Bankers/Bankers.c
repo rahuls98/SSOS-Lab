@@ -62,10 +62,11 @@ void method()
         if(finish[i]==0)
         {
             pnum = search(i);
+            //if need is not greater than the avail
             if(pnum!= -1)
             {
-                result[k++]=i;
-                finish[i]=1;
+                result[k++]=i; //safe sequence
+                finish[i]=1; //finish matrix
                 for(j=0; j<r; j++)
                 {
                     avail[j]=avail[j]+alloc[i][j];
@@ -73,20 +74,23 @@ void method()
             }
         }
         i++;
+        //check if all processes are finished with
         if(i==p)
         {
             flag=0;
+            //if avail!=work : flag=1
             for(j=0; j<r; j++)
                 if(avail[j]!=work[j])
+                    flag=1;
 
-            flag=1;
+            //work=avail
             for(j=0; j<r; j++)
                 work[j]=avail[j];
 
             if(flag==0)
                 break;
             else
-                i=0;
+                i=0;   
         }
     }
 }
@@ -116,7 +120,7 @@ void display()
     }
 
     if(flag==1)
-        printf("\n\nThe system is not in safe state and deadlock may occur!!");
+        printf("\n\nThe system is not in safe state and deadlock may occur!!\n");
     else
     {
         printf("\n\nThe system is in safe state and deadlock will not occur!!");
@@ -134,6 +138,7 @@ int main()
 {
     int i,j;
     k = 0;
+    //intialize all the structures
     for(i=0; i<MAX; i++)
     {   
         for(j=0; j<MAX; j++)
@@ -147,6 +152,7 @@ int main()
         finish[i] = 0;
     }
 
+    //input -> compute -> display
     input();
     method();
     display();

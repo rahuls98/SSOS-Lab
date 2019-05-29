@@ -5,6 +5,7 @@ int main(){
     int i, n, total=0, temp, counter=0, tq;
     float avg=0.0, tt=0.0;
 
+    //Accept no of processes, arrival times, burst times, time quantum
     printf("\nEnter the number of processes: ");
     scanf("%d", &n);
     temp = n;
@@ -21,6 +22,7 @@ int main(){
         scanf("%d",&b[i]);
     }
 
+    //create copy of burst times x=n
     for(i=0; i<n; i++)
         x[i] = b[i];
 
@@ -29,11 +31,13 @@ int main(){
 
     printf("PID  Burst  Arrival  Waiting  Turnaround  Completion");
     for(total=0,i=0; temp!=0;){
+        //if burst time less than time quantum
         if(x[i]<=tq && x[i]>0){
             total = total + x[i];
             x[i] = 0;
-            counter = 1;
+            counter = 1; //ready to be printed
         }
+        //if burst time greater than time quantum
         else if(x[i]>0){
             x[i] = x[i] - tq;
             total = total + tq;

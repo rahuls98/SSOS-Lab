@@ -25,9 +25,11 @@ int main(){
 
     b[9] = 9999;
 
+    //outer loop of the processes
     for(time=0; count!=n; time++){
         smallest = 9;
 
+        //inner loop of processes to according to arrival and least burst time
         for(i=0; i<n; i++){
             if(a[i]<=time && b[i]<b[smallest] && b[i]>0)
                 smallest = i;
